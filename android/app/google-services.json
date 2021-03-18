@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "744368613294",
+    "project_id": "radarprojectapp-77455",
+    "storage_bucket": "radarprojectapp-77455.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744368613294:android:ea8237c15b58d84d608a3f",
+        "android_client_info": {
+          "package_name": "com.danielashraf.radar_project_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744368613294-jhioo30gbsb7nsqmcb9io7anurtqr3rl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.danielashraf.radar_project_app",
+            "certificate_hash": "0a0b818e8f641c0c96d4f1d981ddeee23ea7b361"
+          }
+        },
+        {
+          "client_id": "744368613294-d8ge4joqtia8jbrm0fjqelm2mfp5bq8p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC2WvtkbHt2ds9AUKgKm68mDbMP0WRMTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744368613294-d8ge4joqtia8jbrm0fjqelm2mfp5bq8p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
