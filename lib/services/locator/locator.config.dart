@@ -4,36 +4,45 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
-import 'package:stacked_services/stacked_services.dart';
+import 'package:get_it/get_it.dart' as _i1;
+import 'package:injectable/injectable.dart' as _i2;
+import 'package:stacked_services/stacked_services.dart' as _i4;
 
-import '../auth.dart';
-import '../firebase_realtime_database_service.dart';
-import 'third_party_service_module.dart';
+import '../auth.dart' as _i3;
+import '../firebase_realtime_database_service.dart' as _i5;
+import '../shared_preferences_service.dart' as _i6;
+import 'third_party_service_module.dart'
+    as _i7; // ignore_for_file: unnecessary_lambdas
 
-/// adds generated dependencies
-/// to the provided [GetIt] instance
-
-GetIt $initGetIt(
-  GetIt get, {
-  String environment,
-  EnvironmentFilter environmentFilter,
-}) {
-  final gh = GetItHelper(get, environment, environmentFilter);
-  final thirdPartyServiceModule = _$ThirdPartyServiceModule();
-  gh.lazySingleton<Auth>(() => Auth());
-  gh.lazySingleton<DialogService>(() => thirdPartyServiceModule.dialogService);
-  gh.lazySingleton<FirebaseRealtimeDatabaseService>(
-      () => FirebaseRealtimeDatabaseService());
-  gh.lazySingleton<NavigationService>(
-      () => thirdPartyServiceModule.navigationService);
+// ignore_for_file: lines_longer_than_80_chars
+/// initializes the registration of provided dependencies inside of [GetIt]
+_i1.GetIt $initGetIt(_i1.GetIt get,
+    {String? environment, _i2.EnvironmentFilter? environmentFilter}) {
+  final gh = _i2.GetItHelper(get, environment, environmentFilter);
+  final thirdPartyServicesModule = _$ThirdPartyServicesModule();
+  gh.lazySingleton<_i3.Auth>(() => _i3.Auth());
+  gh.lazySingleton<_i4.BottomSheetService>(
+      () => thirdPartyServicesModule.bottomSheetService);
+  gh.lazySingleton<_i4.DialogService>(
+      () => thirdPartyServicesModule.dialogService);
+  gh.lazySingleton<_i5.FirebaseRealtimeDatabaseService>(
+      () => _i5.FirebaseRealtimeDatabaseService());
+  gh.lazySingleton<_i4.NavigationService>(
+      () => thirdPartyServicesModule.navigationService);
+  gh.lazySingleton<_i6.SharedPreferencesService>(
+      () => _i6.SharedPreferencesService());
+  gh.lazySingleton<_i4.SnackbarService>(
+      () => thirdPartyServicesModule.snackBarService);
   return get;
 }
 
-class _$ThirdPartyServiceModule extends ThirdPartyServiceModule {
+class _$ThirdPartyServicesModule extends _i7.ThirdPartyServicesModule {
   @override
-  DialogService get dialogService => DialogService();
+  _i4.BottomSheetService get bottomSheetService => _i4.BottomSheetService();
   @override
-  NavigationService get navigationService => NavigationService();
+  _i4.DialogService get dialogService => _i4.DialogService();
+  @override
+  _i4.NavigationService get navigationService => _i4.NavigationService();
+  @override
+  _i4.SnackbarService get snackBarService => _i4.SnackbarService();
 }

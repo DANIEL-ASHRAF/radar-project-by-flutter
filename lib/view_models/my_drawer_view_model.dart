@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:radar_project_app/helper/common_widgets/dialog/dialog_type.dart';
 import 'package:radar_project_app/helper/constants/methods.dart';
 import 'package:radar_project_app/services/auth.dart';
@@ -12,8 +13,10 @@ class MyDrawerViewModel extends BaseViewModel{
   Future<void> signOut()async{
     try{
       await auth.signOut();
-    }catch(e){
+    }on PlatformException catch(e){
       showErrorDialog(e.message);
+    }catch(e){
+      showErrorDialog(null);
     }
   }
 
@@ -24,7 +27,8 @@ class MyDrawerViewModel extends BaseViewModel{
       secondaryButtonTitle: "cancel",
       variant:DialogType.Theme ,
     );
-    print("CustomResponse : ${response?.responseData}");
+
+    print("CustomResponse : ${response.responseData}");
   }
 
 }

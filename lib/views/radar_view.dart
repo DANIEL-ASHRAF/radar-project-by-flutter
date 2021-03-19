@@ -5,10 +5,11 @@ import 'package:radar_project_app/helper/constants/app_colors.dart';
 import 'package:radar_project_app/view_models/radar_view_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
-
+//TODO i think useEffect cause rebuild many times >> try to solve this problem
 class RadarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print("parent buillllld");
     return ViewModelBuilder<RadarViewModel>.reactive(
       builder: (context,model,child){
         return SafeArea(
@@ -22,13 +23,13 @@ class RadarView extends StatelessWidget {
   }
 }
 class _Body extends HookViewModelWidget<RadarViewModel> {
-  _Body({Key key}) : super(key: key, reactive: false);
+  _Body({Key? key}) : super(key: key, reactive: false);
 
   @override
   Widget buildViewModelWidget(BuildContext context, RadarViewModel model) {
-    // ignore: missing_return
-    useEffect((){ Future.microtask((){ model.getData();});
-    },const[]);
+    print("child buillllld");
+
+    useEffect((){Future.microtask((){ model.getData();});},const[]);
     return Center(
       child: ListView(
         shrinkWrap: true,

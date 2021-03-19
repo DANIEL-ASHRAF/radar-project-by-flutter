@@ -22,7 +22,7 @@ class LauncherView extends StatelessWidget {
 }
 
 class _Body extends HookViewModelWidget<LauncherViewModel> {
-  _Body({Key key}) : super(key: key, reactive: false);
+  _Body({Key? key}) : super(key: key, reactive: false);
 
   @override
   Widget buildViewModelWidget(BuildContext context, LauncherViewModel model) {

@@ -30,7 +30,7 @@ class SignInView extends StatelessWidget {
 }
 
 class _Body extends HookViewModelWidget<SignInViewModel> with ValidatorsClass{
-  _Body({Key key}) : super(key: key, reactive: false);
+  _Body({Key? key}) : super(key: key, reactive: false);
 
   final _myKey = GlobalKey<FormState>();
 
@@ -39,10 +39,10 @@ class _Body extends HookViewModelWidget<SignInViewModel> with ValidatorsClass{
       BuildContext context,
       SignInViewModel model,
       ) {
-    var _emailTextEditingController=useTextEditingController();
-    var _passwordTextEditingController=useTextEditingController();
-    var _emailFocusNode=useFocusNode();
-    var _passwordFocusNode=useFocusNode();
+    final _emailTextEditingController=useTextEditingController();
+    final _passwordTextEditingController=useTextEditingController();
+    final _emailFocusNode=useFocusNode();
+    final _passwordFocusNode=useFocusNode();
     print("partial  rebuild>>>>>>>>>>>>>>>>>>");
 
     return Form(
@@ -73,7 +73,7 @@ class _Body extends HookViewModelWidget<SignInViewModel> with ValidatorsClass{
               hintColor:brownColor,
               keyboardType: TextInputType.emailAddress,
               focusNode: _emailFocusNode,
-              onSaved: (value)=>model.setEmail(value),
+              onSaved: (value)=>model.setEmail(value!),
               nextFocusNode: _passwordFocusNode,
               validator: emailValidator,
             ),
@@ -96,7 +96,7 @@ class _Body extends HookViewModelWidget<SignInViewModel> with ValidatorsClass{
               focusBorderColor: brownColor,
               enableBorderColor: brownColor,
               iconColor: brownColor,
-              onSaved:(value)=> model.setPassword(value),
+              onSaved:(value)=> model.setPassword(value!),
               focusNode: _passwordFocusNode,
               textInputAction:TextInputAction.done,
               validator:  passwordValidator,

@@ -38,7 +38,7 @@ void setupDialogUi() {
 }
 
 class _LoadingDialog extends StatelessWidget {
-  const _LoadingDialog({Key key,}): super(key: key);
+  const _LoadingDialog({Key? key,}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class _LoadingDialog extends StatelessWidget {
 class _BasicCustomDialog extends StatelessWidget {
   final DialogRequest dialogRequest;
   final Function(DialogResponse) onDialogTap;
-  const _BasicCustomDialog({Key key, this.dialogRequest, this.onDialogTap})
+  const _BasicCustomDialog({Key? key, required this.dialogRequest, required this.onDialogTap})
       : super(key: key);
 
   @override
@@ -118,7 +118,7 @@ class _BasicCustomDialog extends StatelessWidget {
 class _ThemeCustomDialog extends HookWidget {
   final DialogRequest dialogRequest;
   final Function(DialogResponse) onDialogTap;
-  const _ThemeCustomDialog({Key key, this.dialogRequest, this.onDialogTap})
+  const _ThemeCustomDialog({Key? key, required this.dialogRequest, required this.onDialogTap})
       : super(key: key);
 
   @override
@@ -146,7 +146,7 @@ class _ThemeCustomDialog extends HookWidget {
                 activeColor: brownColor,
                 value: 1,
                 groupValue: radioSelect.value,
-                onChanged: (value)=>{radioSelect.value=value},
+                onChanged: (value)=>{radioSelect.value!=value},
               ),
               Text(
                 "Normal theme",
@@ -161,7 +161,7 @@ class _ThemeCustomDialog extends HookWidget {
                 activeColor: brownColor,
                 value: 2,
                 groupValue: radioSelect.value,
-                onChanged: (value)=>{radioSelect.value=value},
+                onChanged: (value)=>{radioSelect.value!=value},
               ),
               Text(
                 "Dark theme",
@@ -197,7 +197,7 @@ class _ThemeCustomDialog extends HookWidget {
 class _FormCustomDialog extends HookWidget {
   final DialogRequest dialogRequest;
   final Function(DialogResponse) onDialogTap;
-  const _FormCustomDialog({Key key, this.dialogRequest, this.onDialogTap})
+  const _FormCustomDialog({Key? key, required this.dialogRequest, required this.onDialogTap})
       : super(key: key);
 
   @override

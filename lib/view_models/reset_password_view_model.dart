@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
@@ -12,10 +13,10 @@ import 'package:stacked_services/stacked_services.dart';
 class ResetPasswordViewModel extends BaseViewModel {
   Auth auth=locator<Auth>();
 
-  String _email;
+  late String _email;
 
-  void setEmail(String value){
-    _email=value;
+  void setEmail(String? value){
+    _email=value!;
   }
 
   Future<void> sendPasswordResetEmail() async {
@@ -25,9 +26,12 @@ class ResetPasswordViewModel extends BaseViewModel {
       await auth.sendPasswordResetEmail(_email);
       setBusy(false);
       await navigateWithoutAnimation(SignInView());
-    } catch (e) {
+     }on FirebaseAuthException catch(e){
       setBusy(false);
-      print(e.message);
+      showErrorDialog(e.message);
+     }catch(e){
+      setBusy(false);
+      showErrorDialog(null);
     }
   }
 

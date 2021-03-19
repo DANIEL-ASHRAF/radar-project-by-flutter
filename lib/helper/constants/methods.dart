@@ -6,10 +6,10 @@ import 'package:stacked_services/stacked_services.dart';
 //for Dialog
 final _dialogService= locator<DialogService>();
 
-Future showErrorDialog(String message)async{
+Future showErrorDialog(String? message)async{
   await _dialogService.showCustomDialog(
     title: "Error",
-    description:message??"something wrong try again" ,
+    description:message??"something wrong!!" ,
     mainButtonTitle: "ok",
     variant:DialogType.Basic ,
   );

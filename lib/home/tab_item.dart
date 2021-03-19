@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 enum TabItem { radar, launcher }
 
 class TabItemData {
-  const TabItemData({@required this.title, @required this.imageOn,@required this.imageOff});
+  const TabItemData({required this.title, required this.imageOn,required this.imageOff});
 
   final String title;
 //  final IconData icon;

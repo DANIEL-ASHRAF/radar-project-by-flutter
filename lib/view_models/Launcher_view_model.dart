@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:radar_project_app/helper/constants/methods.dart';
 import 'package:radar_project_app/models/launcher_model.dart';
 import 'package:radar_project_app/services/firebase_realtime_database_service.dart';
@@ -14,12 +16,15 @@ class LauncherViewModel  extends BaseViewModel{
   Future getData()async{
     try{
       showLoadingDialog();
-      LauncherModel result= await database.getLauncherData();
+      LauncherModel? result= await database.getLauncherData();
       setPower(result?.launcherPower??false);
       _navigationService.popRepeated(1);
-    }catch(e){
+    }on PlatformException catch(e){
       _navigationService.popRepeated(1);
       showErrorDialog(e.message);
+    }catch(e){
+      _navigationService.popRepeated(1);
+      showErrorDialog(null);
     }
   }
 
@@ -33,8 +38,10 @@ class LauncherViewModel  extends BaseViewModel{
       _isEnable=!_isEnable;
       await database.setLauncherData(launcherPower: LauncherModel(launcherPower: isEnable));
       notifyListeners();
-    }catch(e){
+    }on FirebaseException catch(e){
       showErrorDialog(e.message);
+    }catch(e){
+      showErrorDialog(null);
     }
   }
 

@@ -6,11 +6,11 @@ import 'package:radar_project_app/helper/constants/app_colors.dart';
 import '../ui_helpers.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField({Key key,
+  const CustomTextFormField({Key? key,
     this.hint,
     this.label,
     this.borderRadius: 10.0,
-    @required this.validator,
+    required this.validator,
     this.onSaved,
     this.keyboardType,
     this.labelFontSize,
@@ -21,7 +21,6 @@ class CustomTextFormField extends StatefulWidget {
     this.nextFocusNode,
     this.obscureText:false,
     this.cursorWidth:3.0,
-    this.child,
     this.textInputAction:TextInputAction.next,
     @required this.enabled, this.initialValue, this.fillColor,
     this.filled:true,
@@ -37,38 +36,37 @@ class CustomTextFormField extends StatefulWidget {
     this.isPassword:false, this.iconColor,
   });
 
-    final TextEditingController controller;
-    final FocusNode focusNode;
-    final FocusNode nextFocusNode;
-    final Function enterPressed;
-    final String label;
-    final double labelFontSize;
-    final String hint;
-    final Function(String) validator;
-    final Function(String) onSaved;
-    final double borderRadius;
-    final TextInputType keyboardType;
-    final TextInputAction textInputAction;
-    final Function(String) onChanged;
-    final bool obscureText ;
+    final TextEditingController? controller;
+    final FocusNode? focusNode;
+    final FocusNode? nextFocusNode;
+    final Function? enterPressed;
+    final String? label;
+    final double? labelFontSize;
+    final String? hint;
+    final String? Function(String?)? validator;
+    final Function(String?)? onSaved;
+    final double? borderRadius;
+    final TextInputType? keyboardType;
+    final TextInputAction? textInputAction;
+    final Function(String)? onChanged;
+    final bool? obscureText ;
     final double cursorWidth;
-    final bool enabled,filled;
-    final Widget child;
-    final String initialValue;
-    final Color fillColor;
-    final Color labelColor;
-    final Color hintColor;
-    final Color enableBorderColor;
-    final Color focusBorderColor;
-    final Color cursorColor;
-    final int maxLines;
-    final TextDirection textDirection;
-    final EdgeInsetsGeometry contentPadding;
-    final int maxLength;
+    final bool? enabled,filled;
+    final String? initialValue;
+    final Color? fillColor;
+    final Color? labelColor;
+    final Color? hintColor;
+    final Color? enableBorderColor;
+    final Color? focusBorderColor;
+    final Color? cursorColor;
+    final int? maxLines;
+    final TextDirection? textDirection;
+    final EdgeInsetsGeometry? contentPadding;
+    final int? maxLength;
     final bool counterTextShow;
     final double fontSize;
     final bool isPassword;
-    final Color iconColor;
+    final Color? iconColor;
 
 
   @override
@@ -77,12 +75,12 @@ class CustomTextFormField extends StatefulWidget {
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
-  bool obscureText;
+  late bool obscureText;
 
   @override
   void initState() {
     super.initState();
-    obscureText = widget.obscureText;
+    obscureText = widget.obscureText!;
   }
 
 
@@ -99,11 +97,11 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       onSaved: widget.onSaved,
       onChanged: widget.onChanged,
       onFieldSubmitted: (value) {if (widget.nextFocusNode != null) {
-          widget.nextFocusNode.requestFocus();
+          widget.nextFocusNode!.requestFocus();
         }},
       onEditingComplete: () {if (widget.enterPressed != null) {
           FocusScope.of(context).requestFocus(FocusNode());
-          widget.enterPressed();
+          widget.enterPressed!();
         }},
       textInputAction: widget.textInputAction,
       cursorWidth: widget.cursorWidth ,
@@ -120,8 +118,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         counterStyle: TextStyle(color:widget.enableBorderColor,fontSize: widget.fontSize/1.7),
         contentPadding:widget.contentPadding,
         disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(widget.borderRadius),
-            borderSide: BorderSide(color:widget.enableBorderColor,width: 2)),
+            borderRadius: BorderRadius.circular(widget.borderRadius!),
+            borderSide: BorderSide(color:widget.enableBorderColor!,width: 2)),
       labelText: widget.label,
       labelStyle: TextStyle(fontSize: widget.fontSize,color: widget.labelColor) ,
       hintText: widget.hint,
@@ -143,19 +141,19 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         filled:widget.filled,
       fillColor:widget.fillColor,
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(widget.borderRadius),
-          borderSide: BorderSide(color:widget.enableBorderColor,width: 2)),
+        borderRadius: BorderRadius.circular(widget.borderRadius!),
+          borderSide: BorderSide(color:widget.enableBorderColor!,width: 2)),
       focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          borderSide: BorderSide(color:widget.focusBorderColor,width: 2)),
+          borderRadius: BorderRadius.circular(widget.borderRadius!),
+          borderSide: BorderSide(color:widget.focusBorderColor!,width: 2)),
       errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
+          borderRadius: BorderRadius.circular(widget.borderRadius!),
           borderSide: BorderSide(color: errorColor,width: 2)),
       errorMaxLines: 2,
       errorStyle: TextStyle(fontSize: widget.fontSize/1.5, color: errorColor,fontWeight: FontWeight.bold),
       border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          borderSide: BorderSide(color:widget.enableBorderColor,width: 2)),
+          borderRadius: BorderRadius.circular(widget.borderRadius!),
+          borderSide: BorderSide(color:widget.enableBorderColor!,width: 2)),
       ),
     );
   }

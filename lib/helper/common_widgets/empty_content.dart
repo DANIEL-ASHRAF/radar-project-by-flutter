@@ -5,7 +5,7 @@ import '../ui_helpers.dart';
 
 class EmptyContent extends StatelessWidget {
   const EmptyContent({
-    Key key,
+    Key? key,
     this.title = 'Nothing here',
     this.message = 'Add a new item to get started',
   }) : super(key: key);

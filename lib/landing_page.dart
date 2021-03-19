@@ -9,11 +9,11 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<UserFromFirebase>(
+    return StreamBuilder<UserFromFirebase?>(
         stream: auth.onAuthStateChanged,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
-            UserFromFirebase user = snapshot.data;
+            UserFromFirebase? user = snapshot.data;
             if (user == null) {
               return SignInView();
             }

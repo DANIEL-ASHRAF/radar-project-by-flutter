@@ -4,11 +4,11 @@ import 'package:radar_project_app/helper/constants/app_colors.dart';
 import '../ui_helpers.dart';
 
 class CustomButton extends StatelessWidget {
-  CustomButton({@required this.onTap, this.text, this.color:brownColor, this.iconData});
+  CustomButton({required this.onTap, this.text, this.color:brownColor, this.iconData});
   final VoidCallback onTap;
-  final String text;
+  final String? text;
   final Color color;
-  final IconData iconData;
+  final IconData? iconData;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -18,7 +18,7 @@ class CustomButton extends StatelessWidget {
         height: MediaQuery.of(context).size.width / 7,
         child: Center(
             child: iconData!=null? Icon(iconData,color: Colors.white,size:screenWidth(context)*.08,):
-            Text(text,
+            Text(text!,
                 maxLines: 1,textScaleFactor: 1,
                 style: TextStyle(
                     color: Colors.white,

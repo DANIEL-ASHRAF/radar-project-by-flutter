@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:radar_project_app/helper/common_widgets/dialog/dialog_view_model.dart';
 import 'package:radar_project_app/helper/constants/methods.dart';
 import 'package:radar_project_app/landing_page.dart';
@@ -11,10 +13,8 @@ import 'package:stacked_services/stacked_services.dart';
 
 class SignInViewModel extends BaseViewModel {
   Auth auth=locator<Auth>();
-
-  DialogViewModel dialogViewModel;
-  String  _email ;
-  String  _password ;
+  late String  _email ;
+  late String  _password ;
 
   void setEmail(String value){
     _email=value;
@@ -30,10 +30,13 @@ class SignInViewModel extends BaseViewModel {
       setBusy(true);
       await auth.signInWithEmailAndPassword(_email, _password);
       setBusy(false);
-      await navigateAndRemoveUntil(r.Router.landingPage);
-    } catch (e) {
+      await navigateAndRemoveUntil(r.LandingRoute.name);
+    }on FirebaseAuthException catch(e){
       setBusy(false);
       showErrorDialog(e.message);
+    }catch(e){
+      setBusy(false);
+      showErrorDialog(null);
     }
   }
 

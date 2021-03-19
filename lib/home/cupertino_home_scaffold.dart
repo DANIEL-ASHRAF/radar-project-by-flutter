@@ -6,11 +6,11 @@ import 'package:radar_project_app/home/tab_item.dart';
 import 'package:radar_project_app/views/my_drawer_view.dart';
 class CupertinoHomeScaffold extends StatelessWidget {
   const CupertinoHomeScaffold({
-    Key key,
-    @required this.currentTab,
-    @required this.onSelectTab,
-    @required this.widgetBuilders,
-    @required this.navigatorKeys,
+    Key? key,
+    required this.currentTab,
+    required this.onSelectTab,
+    required this.widgetBuilders,
+    required this.navigatorKeys,
   }) : super(key: key);
 
   final TabItem currentTab;
@@ -56,7 +56,7 @@ class CupertinoHomeScaffold extends StatelessWidget {
             final item = TabItem.values[index];
             return CupertinoTabView(
               navigatorKey: navigatorKeys[item],
-              builder: (context) => widgetBuilders[item](context),
+              builder: (context) => widgetBuilders[item]!(context),
             );
           },
         ),
@@ -70,7 +70,7 @@ class CupertinoHomeScaffold extends StatelessWidget {
     final imageColor = currentTab == tabItem ? true : false;
 
     return BottomNavigationBarItem(
-      icon: itemData.title=="Launcher"?
+      icon: itemData!.title=="Launcher"?
       Container(
         child:Row(
           mainAxisAlignment: MainAxisAlignment.center,

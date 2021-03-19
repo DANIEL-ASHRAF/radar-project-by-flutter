@@ -5,9 +5,9 @@ import 'package:stacked_services/stacked_services.dart';
 
 class DialogViewModel extends BaseViewModel{
   final _dialogService= locator<DialogService>();
-  bool _confirmationResult;
+  late bool _confirmationResult;
   bool get confirmationResult =>_confirmationResult;
-  DialogResponse _dialogResponse;
+  late DialogResponse _dialogResponse;
   DialogResponse get customDialogResult => _dialogResponse;
 
   Future showBasicDialog()async{
@@ -17,7 +17,7 @@ class DialogViewModel extends BaseViewModel{
       buttonTitle: "ok",
       cancelTitle: "cancel",
     );
-    print("DialogResponse : ${response?.confirmed}");
+    print("DialogResponse : ${response.confirmed}");
     //true , false , null(when dismiss th dialog )
   }
 
@@ -28,7 +28,7 @@ class DialogViewModel extends BaseViewModel{
       confirmationTitle: "yes",
       cancelTitle: "cancel",
     );
-    _confirmationResult=response?.confirmed;
+    _confirmationResult=response.confirmed!;
     notifyListeners();
   }
 
@@ -38,7 +38,7 @@ class DialogViewModel extends BaseViewModel{
       mainButtonTitle: "confirm",
       variant:DialogType.Form ,
     );
-    print("CustomResponse : ${response?.responseData}");
+    print("CustomResponse : ${response.responseData}");
   }
 
   Future showLoadingDialog()async{

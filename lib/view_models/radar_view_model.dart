@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:radar_project_app/helper/common_widgets/dialog/dialog_type.dart';
 import 'package:radar_project_app/helper/constants/methods.dart';
 import 'package:radar_project_app/models/radar_model.dart';
@@ -24,13 +25,13 @@ class RadarViewModel extends BaseViewModel{
   Future getData()async{
     try{
       showLoadingDialog();
-      RadarModel result= await database.getRadarData();
+      RadarModel? result= await database.getRadarData();
       changeAngle(RangeValues(result?.leftAngle?.toDouble()??0,result?.rightAngle?.toDouble()??0));
       changeSpeed(result?.radarSpeed?.toDouble()??0);
       setPower(result?.radarPower??false);
       flag=true;
       _navigationService.popRepeated(1);
-    }catch(e){
+    }on PlatformException catch(e){
       _navigationService.popRepeated(1);
       showErrorDialog(e.message);
     }
@@ -71,10 +72,12 @@ class RadarViewModel extends BaseViewModel{
                 leftAngle: selectRange.start.toInt(),
                 rightAngle: selectRange.end.toInt()));
       }
-    }catch (e) {
+    }on PlatformException catch(e){
       showErrorDialog(e.message);
+    }catch(e){
+      showErrorDialog(null);
     }
-    setBusy(false);
+//    setBusy(false);
   }
 
 }

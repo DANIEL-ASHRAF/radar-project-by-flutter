@@ -12,8 +12,8 @@ class FirebaseRealtimeDatabaseService {
   final databaseReference = FirebaseDatabase.instance.reference();
 
   Future<void> setData({
-    @required String path,
-    @required Map<String, dynamic> data,
+    required String path,
+    required Map<String, dynamic> data,
   }) async {
     try{
       databaseReference.child(path).set(data).asStream();
@@ -22,11 +22,11 @@ class FirebaseRealtimeDatabaseService {
     }
   }
 
-  Future<void> setRadarData({RadarModel radarModel})async=> await setData(
+  Future<void> setRadarData({required RadarModel radarModel})async=> await setData(
     path: APIPath.radarPath(),
     data: radarModel.toJson(),
   );
-  Future<void> setLauncherData({LauncherModel launcherPower})async=> await setData(
+  Future<void> setLauncherData({required LauncherModel launcherPower})async=> await setData(
     path: APIPath.launcherPath(),
     data: launcherPower.toJson(),
   );
@@ -38,11 +38,11 @@ class FirebaseRealtimeDatabaseService {
 //    return subscription;
 //  }
 
-  Future<RadarModel> getRadarData() async{
+  Future<RadarModel?> getRadarData() async{
     try{
       DataSnapshot dataSnapshot= await databaseReference.child(APIPath.radarPath()).once();
       if(dataSnapshot.value !=null){
-        RadarModel result;
+        final result;
         result=RadarModel(leftAngle:dataSnapshot.value["leftAngle"],
           radarPower: dataSnapshot.value["radarPower"],
           radarSpeed: dataSnapshot.value["radarSpeed"],
@@ -59,7 +59,7 @@ class FirebaseRealtimeDatabaseService {
     }
   }
 
-  Future<LauncherModel> getLauncherData() async{
+  Future<LauncherModel?> getLauncherData() async{
     try{
       DataSnapshot dataSnapshot= await databaseReference.child(APIPath.launcherPath()).once();
       if(dataSnapshot.value !=null){

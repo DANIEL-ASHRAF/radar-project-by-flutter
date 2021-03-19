@@ -5,7 +5,7 @@ class ValidatorsClass {
 
   bool validateAndSaveForm(GlobalKey<FormState> key) {
     final myFormKey = key.currentState;
-    if (myFormKey.validate()) {
+    if (myFormKey!.validate()) {
       myFormKey.save();
       return true;
     }
@@ -14,7 +14,7 @@ class ValidatorsClass {
 
   bool validateForm(GlobalKey<FormState> key) {
     final myFormKey = key.currentState;
-    if (myFormKey.validate()) {
+    if (myFormKey!.validate()) {
       return true;
     }
     return false;

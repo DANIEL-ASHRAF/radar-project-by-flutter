@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +12,7 @@ import 'landing_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  setupLocator();
+  configureDependencies();
   setupDialogUi();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitDown]);
   runApp(MyApp());
@@ -34,8 +35,9 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: backgroundColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute:r.Router.landingPage,
-      onGenerateRoute:r.Router.onGenerateRoute ,
+//      initialRoute:r.LandingRoute.name,
+      home: LandingPage(),
+//      onGenerateRoute:r.Router.onGenerateRoute ,
       navigatorKey:locator<NavigationService>().navigatorKey,
     );
   }
