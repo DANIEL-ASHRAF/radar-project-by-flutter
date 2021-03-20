@@ -6,7 +6,7 @@ import 'package:radar_project_app/models/launcher_model.dart';
 import 'package:radar_project_app/models/radar_model.dart';
 import 'package:radar_project_app/services/api_path.dart';
 
-@lazySingleton
+@singleton
 class FirebaseRealtimeDatabaseService {
 
   final databaseReference = FirebaseDatabase.instance.reference();

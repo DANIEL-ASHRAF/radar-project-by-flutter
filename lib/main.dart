@@ -20,9 +20,11 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  final _appRouter = r.Router();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Radar Project App',
       theme: ThemeData(
@@ -35,10 +37,9 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: backgroundColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-//      initialRoute:r.LandingRoute.name,
-      home: LandingPage(),
-//      onGenerateRoute:r.Router.onGenerateRoute ,
-      navigatorKey:locator<NavigationService>().navigatorKey,
+      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: _appRouter.defaultRouteParser(),
+      key: locator<NavigationService>().navigatorKey,
     );
   }
 }

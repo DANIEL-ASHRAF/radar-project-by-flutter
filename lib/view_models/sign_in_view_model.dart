@@ -30,6 +30,26 @@ class SignInViewModel extends BaseViewModel {
       setBusy(true);
       await auth.signInWithEmailAndPassword(_email, _password);
       setBusy(false);
+//      await navigateAndRemoveUntil(r.LandingRoute.name);
+    }on FirebaseAuthException catch(e){
+      setBusy(false);
+      showErrorDialog(e.message);
+    }catch(e){
+      showErrorDialog(null);
+    }finally{
+      await navigateAndRemoveUntil(r.LandingRoute.name);
+    }
+//    catch(e){
+//      setBusy(false);
+//      showErrorDialog(null);
+//    }
+  }
+
+  Future<void> signUpWithEmailAndPassword()async {
+    try {
+      setBusy(true);
+      await auth.createUserWithEmailAndPassword(_email, _password);
+      setBusy(false);
       await navigateAndRemoveUntil(r.LandingRoute.name);
     }on FirebaseAuthException catch(e){
       setBusy(false);
@@ -39,6 +59,7 @@ class SignInViewModel extends BaseViewModel {
       showErrorDialog(null);
     }
   }
+
 
   Future<void> navigateToResetPasswordView()async{
     await navigateWithoutAnimation(ResetPasswordView());

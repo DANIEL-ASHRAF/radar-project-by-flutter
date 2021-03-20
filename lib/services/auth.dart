@@ -32,11 +32,16 @@ class Auth {
     return _firebaseAuth.authStateChanges().map(_userFromFirebase);
   }
 
-//  @override
-//  Future<UserFromFirebase> currentUser() async {
-//    final user =  _firebaseAuth.currentUser;
-//    return _userFromFirebase(user);
-//  }
+  Future createUserWithEmailAndPassword(
+      String email, String password) async {
+    try{
+      final authResult = await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return _userFromFirebase(authResult.user);
+    }catch(e){
+      rethrow;
+    }
+  }
 
   Future<void> signInWithEmailAndPassword(String email, String password) async {
     try{
@@ -52,10 +57,6 @@ class Auth {
     try{
       await _firebaseAuth.sendPasswordResetEmail(email: email);
     }catch(e){
-      rethrow;
-    }
-
-    catch(e){
       rethrow;
     }
   }

@@ -5,32 +5,26 @@ import 'package:radar_project_app/models/launcher_model.dart';
 import 'package:radar_project_app/services/firebase_realtime_database_service.dart';
 import 'package:radar_project_app/services/locator/locator.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
-class LauncherViewModel  extends BaseViewModel{
+class LauncherFutureViewModel  extends FutureViewModel<LauncherModel>{
   final database = locator<FirebaseRealtimeDatabaseService>();
-  final _navigationService=locator<NavigationService>();
-  bool _isEnable=false;
+  late bool _isEnable;
   bool get isEnable =>_isEnable;
-
-  Future getData()async{
+  LauncherModel? result;
+  Future<LauncherModel?> getData()async{
     try{
-      showLoadingDialog();
-      LauncherModel? result= await database.getLauncherData();
-      setPower(result?.launcherPower??false);
-      _navigationService.popRepeated(1);
+      result= await database.getLauncherData();
+      setPower();
+      return result;
     }on PlatformException catch(e){
-      _navigationService.popRepeated(1);
       showErrorDialog(e.message);
     }catch(e){
-      _navigationService.popRepeated(1);
       showErrorDialog(null);
     }
   }
 
-  void setPower(bool value){
-    _isEnable=value;
-    notifyListeners();
+  void setPower(){
+    _isEnable=result?.launcherPower??false;
   }
 
   Future<void> changePower() async{
@@ -44,5 +38,8 @@ class LauncherViewModel  extends BaseViewModel{
       showErrorDialog(null);
     }
   }
+
+  @override
+  Future<LauncherModel?> futureToRun() => getData();
 
 }

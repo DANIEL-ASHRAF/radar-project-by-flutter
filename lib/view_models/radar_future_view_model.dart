@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:injectable/injectable.dart';
 import 'package:radar_project_app/helper/common_widgets/dialog/dialog_type.dart';
 import 'package:radar_project_app/helper/constants/methods.dart';
 import 'package:radar_project_app/models/radar_model.dart';
@@ -8,38 +9,41 @@ import 'package:radar_project_app/services/locator/locator.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-//TODO create flag bool which makes us don't set data in the first time we retrieve the data and use it also for color the component
 //TODO the radar page render twice when hotRestart
 
-class RadarViewModel extends BaseViewModel{
+@singleton
+class RadarFutureViewModel extends FutureViewModel<RadarModel>{
   final database = locator<FirebaseRealtimeDatabaseService>();
-  final _navigationService=locator<NavigationService>();
-  bool flag=false;
-  bool _isEnable = false;
-  double _speedValue=0.0;
-  var _selectRange=RangeValues(0,180);
+  late bool _isEnable;
+  late double _speedValue;
+  late RangeValues _selectRange;
   bool get isEnable =>_isEnable;
   double get speedValue=>_speedValue;
   RangeValues get selectRange =>_selectRange;
-
-  Future getData()async{
+  RadarModel? result;
+  Future<RadarModel?> getData()async{
     try{
-      showLoadingDialog();
-      RadarModel? result= await database.getRadarData();
-      changeAngle(RangeValues(result?.leftAngle?.toDouble()??0,result?.rightAngle?.toDouble()??0));
-      changeSpeed(result?.radarSpeed?.toDouble()??0);
+      result= await database.getRadarData();
+      setAngle(RangeValues(result?.leftAngle?.toDouble()??0,result?.rightAngle?.toDouble()??0));
+      setSpeed(result?.radarSpeed?.toDouble()??0);
       setPower(result?.radarPower??false);
-      flag=true;
-      _navigationService.popRepeated(1);
+      return result;
     }on PlatformException catch(e){
-      _navigationService.popRepeated(1);
       showErrorDialog(e.message);
+    }catch(e){
+      showErrorDialog(null);
     }
   }
 
   void setPower(bool value){
     _isEnable=value;
-    notifyListeners();
+  }
+  void setSpeed(double value){
+    int _speedInInt=value.toInt();
+    _speedValue=_speedInInt.toDouble();
+  }
+  void setAngle(RangeValues value){
+    _selectRange=RangeValues((value.start.toInt()).toDouble(),(value.end.toInt()).toDouble());
   }
 
   Future<void> changePower()async{
@@ -62,22 +66,20 @@ class RadarViewModel extends BaseViewModel{
   }
 
   Future<void> sendDataToFirebase()async{
-    setBusy(true);
     try{
-      if(flag){
         await database.setRadarData(
             radarModel: RadarModel(
                 radarPower: isEnable,
                 radarSpeed: speedValue.toInt(),
                 leftAngle: selectRange.start.toInt(),
                 rightAngle: selectRange.end.toInt()));
-      }
     }on PlatformException catch(e){
       showErrorDialog(e.message);
     }catch(e){
       showErrorDialog(null);
     }
-//    setBusy(false);
   }
 
+  @override
+  Future<RadarModel?> futureToRun() =>getData();
 }
