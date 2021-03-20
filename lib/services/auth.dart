@@ -1,19 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
+
 class UserFromFirebase {
   UserFromFirebase({required this.uid});
   final String uid;
 }
-//
-//abstract class AuthBase {
-//  Stream<UserFromFirebase?> get onAuthStateChanged;
-////  Future<UserFromFirebase> currentUser();
-//  Future<void> signInWithEmailAndPassword(String email, String password);
-//  Future sendPasswordResetEmail(String email);
-//  Future<void> signOut();
-//}
 
 @lazySingleton
 class Auth {
@@ -30,17 +21,6 @@ class Auth {
 
   Stream<UserFromFirebase?> get onAuthStateChanged {
     return _firebaseAuth.authStateChanges().map(_userFromFirebase);
-  }
-
-  Future createUserWithEmailAndPassword(
-      String email, String password) async {
-    try{
-      final authResult = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      return _userFromFirebase(authResult.user);
-    }catch(e){
-      rethrow;
-    }
   }
 
   Future<void> signInWithEmailAndPassword(String email, String password) async {

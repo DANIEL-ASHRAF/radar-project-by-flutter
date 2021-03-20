@@ -28,8 +28,6 @@ class RadarView extends StatelessWidget {
                         color: model.isEnable?greenColor:Colors.grey,
                         size: 150,)),
                   SizedBox(height: 20,),
-//                    Text('Speed: ${(snap).toInt()} ',textAlign: TextAlign.center,style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: brownColor),),
-
                   Text('Speed: ${(model.speedValue).toInt()} ',textAlign: TextAlign.center,style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: brownColor),),
                   Slider(
                     value:model.speedValue,

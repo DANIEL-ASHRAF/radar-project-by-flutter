@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class RadarModel {
 RadarModel({
   required this.radarPower,required this.radarSpeed,required this.leftAngle,required this.rightAngle

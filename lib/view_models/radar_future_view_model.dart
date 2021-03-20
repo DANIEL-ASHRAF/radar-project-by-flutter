@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
-import 'package:radar_project_app/helper/common_widgets/dialog/dialog_type.dart';
 import 'package:radar_project_app/helper/constants/methods.dart';
 import 'package:radar_project_app/models/radar_model.dart';
 import 'package:radar_project_app/services/firebase_realtime_database_service.dart';
 import 'package:radar_project_app/services/locator/locator.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
-
-//TODO the radar page render twice when hotRestart
 
 @singleton
 class RadarFutureViewModel extends FutureViewModel<RadarModel>{

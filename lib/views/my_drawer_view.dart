@@ -50,20 +50,6 @@ class MyDrawerView extends StatelessWidget {
                       ],),
                     ),
                     SizedBox(height: 10,),
-                    GestureDetector(
-                      onTap: model.showThemeDialog,
-                      child: Row(
-                        children: [
-                          Icon(Icons.category_sharp,color: brownColor,size: screenWidth(context)*.08),
-                          SizedBox(width: 20,),
-                          Text("Theme",maxLines: 1,textScaleFactor: 1,style: TextStyle(
-                              fontSize: screenWidth(context)*.066,
-                              fontWeight: FontWeight.bold,
-                              color: brownColor),),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 10,),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 12),
                       child: Divider(

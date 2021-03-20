@@ -7,7 +7,6 @@ import 'package:radar_project_app/services/routes/router.gr.dart'as r;
 import 'package:stacked_services/stacked_services.dart';
 import 'helper/common_widgets/dialog/custom_dialog_ui.dart';
 import 'helper/constants/app_colors.dart';
-import 'landing_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +18,6 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   final _appRouter = r.Router();
 
   @override
@@ -40,6 +38,6 @@ class MyApp extends StatelessWidget {
       routerDelegate: _appRouter.delegate(),
       routeInformationParser: _appRouter.defaultRouteParser(),
       key: locator<NavigationService>().navigatorKey,
-    );
+    ) ;
   }
 }

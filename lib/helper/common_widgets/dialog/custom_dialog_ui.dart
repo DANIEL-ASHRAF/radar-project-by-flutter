@@ -20,11 +20,6 @@ void setupDialogUi() {
         Dialog(
           child: _FormCustomDialog(dialogRequest: dialogRequest,onDialogTap: completer,),
         ),
-    DialogType.Theme:(BuildContext context,DialogRequest dialogRequest,
-        Function(DialogResponse) completer)=>
-        Dialog(
-          child: _ThemeCustomDialog(dialogRequest: dialogRequest,onDialogTap: completer,),
-        ),
     DialogType.Basic:(BuildContext context,DialogRequest dialogRequest,
         Function(DialogResponse) completer)=>
         Dialog(
@@ -108,84 +103,6 @@ class _BasicCustomDialog extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
               ),
             ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class _ThemeCustomDialog extends HookWidget {
-  final DialogRequest dialogRequest;
-  final Function(DialogResponse) onDialogTap;
-  const _ThemeCustomDialog({Key? key, required this.dialogRequest, required this.onDialogTap})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var radioSelect=useState(1);
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Text(
-            "Theme",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23,color: brownColor),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Radio(
-                activeColor: brownColor,
-                value: 1,
-                groupValue: radioSelect.value,
-                onChanged: (value)=>{radioSelect.value!=value},
-              ),
-              Text(
-                "Normal theme",
-                style: TextStyle(fontSize: 18,color: brownColor),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Radio(
-                activeColor: brownColor,
-                value: 2,
-                groupValue: radioSelect.value,
-                onChanged: (value)=>{radioSelect.value!=value},
-              ),
-              Text(
-                "Dark theme",
-                style: TextStyle(fontSize: 18,color: brownColor),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              GestureDetector(
-                onTap: () => onDialogTap(DialogResponse(responseData: false)),
-                child:Text(dialogRequest.secondaryButtonTitle,style: TextStyle(color: brownColor,fontWeight: FontWeight.bold,fontSize: 18)),
-              ),
-              SizedBox(width: 25,),
-              GestureDetector(
-                onTap: () => onDialogTap(DialogResponse(responseData: radioSelect.value)),
-                child:Text(dialogRequest.mainButtonTitle,style: TextStyle(color: brownColor,fontWeight: FontWeight.bold,fontSize: 18)),
-              ),
-            ],
           )
         ],
       ),

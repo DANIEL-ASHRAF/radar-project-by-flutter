@@ -37,6 +37,7 @@ dependencies:
   #state management
   stacked: ^1.9.7
   stacked_hooks: ^0.1.4
+  provider: ^5.0.0
 
   #inversion of control
   get_it: ^6.0.0
@@ -45,8 +46,6 @@ dependencies:
 
   #navigation
   auto_route: ^1.0.2
-#  auto_route: ^1.0.1
-
   stacked_services: ^0.7.3
 
   # The following adds the Cupertino Icons font to your application.
