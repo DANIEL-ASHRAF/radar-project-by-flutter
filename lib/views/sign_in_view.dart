@@ -121,12 +121,11 @@ class _Body extends HookViewModelWidget<SignInViewModel> with ValidatorsClass{
             ),
           ),
           GestureDetector(
-            onTap: model.navigateToResetPasswordView,
+            onTap:()async{await model.navigateToResetPasswordView();},
             child: Container(
-                padding: EdgeInsets.only(top:16),
+                padding: EdgeInsets.only(top:16,bottom: 16),
                 child: Text("Forget password?",maxLines: 1,textScaleFactor: 1, style: TextStyle(fontSize: screenWidth(context)*.059,color: brownColor,fontWeight: FontWeight.bold))),
           ),
-
         ],
       ),
     );
