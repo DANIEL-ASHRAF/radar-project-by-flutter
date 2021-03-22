@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:radar_project_app/helper/constants/methods.dart';
 import 'package:radar_project_app/models/launcher_model.dart';
+import 'package:radar_project_app/services/app/app.locator.dart';
 import 'package:radar_project_app/services/firebase_realtime_database_service.dart';
-import 'package:radar_project_app/services/locator/locator.dart';
 import 'package:stacked/stacked.dart';
 
 class LauncherFutureViewModel  extends FutureViewModel<LauncherModel>{

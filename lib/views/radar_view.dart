@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:radar_project_app/helper/constants/app_colors.dart';
-import 'package:radar_project_app/services/locator/locator.dart';
+import 'package:radar_project_app/services/app/app.locator.dart';
 import 'package:radar_project_app/view_models/radar_future_view_model.dart';
 import 'package:stacked/stacked.dart';
 

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:radar_project_app/helper/constants/app_colors.dart';
-import 'package:radar_project_app/services/locator/locator.dart';
+import 'package:radar_project_app/services/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'dialog_type.dart';
 

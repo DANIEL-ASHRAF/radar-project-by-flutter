@@ -1,12 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:injectable/injectable.dart';
 
 class UserFromFirebase {
   UserFromFirebase({required this.uid});
   final String uid;
 }
 
-@lazySingleton
 class Auth {
   final _firebaseAuth = FirebaseAuth.instance;
 

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:radar_project_app/helper/constants/methods.dart';
+import 'package:radar_project_app/services/app/app.locator.dart';
 import 'package:radar_project_app/services/auth.dart';
-import 'package:radar_project_app/services/locator/locator.dart';
 import 'package:radar_project_app/views/sign_in_view.dart';
 import 'package:stacked/stacked.dart';
 

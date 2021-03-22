@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:radar_project_app/helper/constants/methods.dart';
+import 'package:radar_project_app/services/app/app.locator.dart';
+import 'package:radar_project_app/services/app/app.router.dart';
 import 'package:radar_project_app/services/auth.dart';
-import 'package:radar_project_app/services/locator/locator.dart';
-import 'package:radar_project_app/services/routes/router.gr.dart'as r;
 import 'package:radar_project_app/views/reset_password_view.dart';
 import 'package:stacked/stacked.dart';
 
@@ -29,7 +29,7 @@ class SignInViewModel extends BaseViewModel {
     }catch(e){
       showErrorDialog(null);
     }finally{
-      await navigateAndRemoveUntil(r.LandingRoute.name);
+      await navigateAndRemoveUntil(Routes.landingPage);
     }
   }
 

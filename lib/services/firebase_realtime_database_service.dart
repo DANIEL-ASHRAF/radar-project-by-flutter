@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:injectable/injectable.dart';
 import 'package:radar_project_app/models/launcher_model.dart';
 import 'package:radar_project_app/models/radar_model.dart';
 import 'package:radar_project_app/services/api_path.dart';
 
-@singleton
 class FirebaseRealtimeDatabaseService {
 
   final databaseReference = FirebaseDatabase.instance.reference();
