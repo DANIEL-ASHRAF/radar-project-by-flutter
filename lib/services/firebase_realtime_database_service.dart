@@ -7,7 +7,6 @@ import 'package:radar_project_app/services/api_path.dart';
 class FirebaseRealtimeDatabaseService {
 
   final databaseReference = FirebaseDatabase.instance.reference();
-
   Future<void> setData({
     required String path,
     required Map<String, dynamic> data,

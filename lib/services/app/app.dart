@@ -9,6 +9,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../auth.dart';
 import '../firebase_realtime_database_service.dart';
+import '../internet_connectivity.dart';
 
 
 @StackedApp(
@@ -26,7 +27,7 @@ import '../firebase_realtime_database_service.dart';
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: Auth),
     LazySingleton(classType: FirebaseRealtimeDatabaseService),
-    LazySingleton(classType: RadarFutureViewModel)
+    LazySingleton(classType: RadarFutureViewModel),
   ]
 )
 class AppSetup {}

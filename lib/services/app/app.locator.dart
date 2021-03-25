@@ -12,6 +12,7 @@ import 'package:stacked_services/stacked_services.dart';
 import '../../view_models/radar_future_view_model.dart';
 import '../auth.dart';
 import '../firebase_realtime_database_service.dart';
+import '../internet_connectivity.dart';
 
 final locator = StackedLocator.instance;
 
@@ -23,4 +24,5 @@ void setupLocator() {
   locator.registerLazySingleton(() => Auth());
   locator.registerLazySingleton(() => FirebaseRealtimeDatabaseService());
   locator.registerLazySingleton(() => RadarFutureViewModel());
+  locator.registerLazySingleton(() => ConnectivityService());
 }
