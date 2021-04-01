@@ -14,44 +14,40 @@ class RadarView extends StatelessWidget {
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,
       builder: (context,model,child){
-        return SafeArea(
-          child: Scaffold(
-              body: Center(
-                child:model.isBusy?CircularProgressIndicator(backgroundColor: brownColor,):
-                model.data==null? Text("No Data"):
-                NetworkSensitive(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Text('Power',textAlign: TextAlign.center,style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: brownColor),),
-                      GestureDetector(
-                          onTap: model.changePower,
-                          child: Icon(Icons.power_settings_new,
-                            color: model.isEnable?greenColor:Colors.grey,
-                            size: 150,)),
-                      SizedBox(height: 20,),
-                      Text('Speed: ${(model.speedValue).toInt()} ',textAlign: TextAlign.center,style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: brownColor),),
-                      Slider(
-                        value:model.speedValue,
-                        min: 0,max: 100,
-                        activeColor: greenColor,
-                        inactiveColor: Colors.grey,
-                        onChanged:(value){
-                          model.changeSpeed(value);
-                        },
-                      ),
-                      SizedBox(height: 20,),
-                      Text('Angle: ${((model.selectRange.start).toInt())} ,${((model.selectRange.end).toInt())} ',textAlign: TextAlign.center,style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: brownColor),),
-                      RangeSlider(values: model.selectRange,
-                          min: 0,max: 180,activeColor: greenColor,
-                          inactiveColor: Colors.grey,
-                          onChanged:(value){ model.changeAngle(value);}),
-                      SizedBox(height: 10,),
-                    ],
-                  ),
-                ) ,
-              ),
-          ),
+        return Center(
+          child:model.isBusy?CircularProgressIndicator(backgroundColor: brownColor,):
+          model.data==null? Text("No Data"):
+          NetworkSensitive(
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Text('Power',textAlign: TextAlign.center,style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: brownColor),),
+                GestureDetector(
+                    onTap: model.changePower,
+                    child: Icon(Icons.power_settings_new,
+                      color: model.isEnable?greenColor:Colors.grey,
+                      size: 150,)),
+                SizedBox(height: 20,),
+                Text('Speed: ${(model.speedValue).toInt()} ',textAlign: TextAlign.center,style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: brownColor),),
+                Slider(
+                  value:model.speedValue,
+                  min: 0,max: 100,
+                  activeColor: greenColor,
+                  inactiveColor: Colors.grey,
+                  onChanged:(value){
+                    model.changeSpeed(value);
+                  },
+                ),
+                SizedBox(height: 20,),
+                Text('Angle: ${((model.selectRange.start).toInt())} ,${((model.selectRange.end).toInt())} ',textAlign: TextAlign.center,style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: brownColor),),
+                RangeSlider(values: model.selectRange,
+                    min: 0,max: 180,activeColor: greenColor,
+                    inactiveColor: Colors.grey,
+                    onChanged:(value){ model.changeAngle(value);}),
+                SizedBox(height: 10,),
+              ],
+            ),
+          ) ,
         );
       },
       viewModelBuilder: ()=> locator<RadarFutureViewModel>() ,

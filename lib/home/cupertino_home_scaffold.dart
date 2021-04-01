@@ -23,6 +23,7 @@ class CupertinoHomeScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child:Scaffold(
+        resizeToAvoidBottomInset: false,
         drawerEnableOpenDragGesture: false,
         appBar: AppBar(
           backgroundColor: backgroundColor,elevation: 0,

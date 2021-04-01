@@ -25,7 +25,7 @@ class ResetPasswordView extends StatelessWidget {
         viewModelBuilder: ()=>ResetPasswordViewModel());
   }
 }
- class _Body extends HookViewModelWidget<ResetPasswordViewModel>  with ValidatorsClass{
+ class _Body extends HookViewModelWidget<ResetPasswordViewModel>{
    _Body({Key? key}) : super(key: key, reactive: false);
 
    final _myKey = GlobalKey<FormState>();

@@ -4,8 +4,9 @@ import 'package:radar_project_app/helper/constants/app_colors.dart';
 import '../ui_helpers.dart';
 
 class CustomButton extends StatelessWidget {
-  CustomButton({required this.onTap, this.text, this.color:brownColor, this.iconData});
+  CustomButton({required this.onTap, this.text, this.color:brownColor, this.iconData, this.isLoading:false});
   final VoidCallback onTap;
+  final bool isLoading;
   final String? text;
   final Color color;
   final IconData? iconData;
@@ -17,7 +18,8 @@ class CustomButton extends StatelessWidget {
         width: MediaQuery.of(context).size.width / 2,
         height: MediaQuery.of(context).size.width / 7,
         child: Center(
-            child: iconData!=null? Icon(iconData,color: Colors.white,size:screenWidth(context)*.08,):
+            child:!isLoading?iconData!=null?
+            Icon(iconData,color: Colors.white,size:screenWidth(context)*.08,):
             Text(text!,
                 maxLines: 1,textScaleFactor: 1,
                 style: TextStyle(
@@ -25,7 +27,7 @@ class CustomButton extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontStyle: FontStyle.normal,
                   fontSize: screenWidth(context)*.066,
-                ))),
+                )):CircularProgressIndicator()),
         decoration: BoxDecoration(
           color: color,
             boxShadow: [

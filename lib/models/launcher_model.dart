@@ -1,18 +1,18 @@
 class LauncherModel {
-  LauncherModel({required this.launcherPower});
-  bool? launcherPower;
+  LauncherModel({required this.launcherAngle});
+  int? launcherAngle;
 
   factory LauncherModel.fromJson(Map<String, dynamic>? data) {
     if (data == null) {
-      return LauncherModel(launcherPower: false);
+      return LauncherModel(launcherAngle: 0);
     }
     return LauncherModel(
-      launcherPower: data["launcherPower"],
+      launcherAngle: data["launcherAngle"],
     );
   }
 
   Map<String, dynamic> toJson() => {
-    "launcherPower": launcherPower,
+    "launcherAngle": launcherAngle,
   };
 
 }

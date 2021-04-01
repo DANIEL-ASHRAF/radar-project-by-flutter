@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/animation.dart';
 import 'package:radar_project_app/models/launcher_model.dart';
 import 'package:radar_project_app/models/radar_model.dart';
 import 'package:radar_project_app/services/api_path.dart';
@@ -23,9 +24,9 @@ class FirebaseRealtimeDatabaseService {
     data: radarModel.toJson(),
   );
 
-  Future<void> setLauncherData({required LauncherModel launcherPower})async=> await setData(
+  Future<void> setLauncherData({required LauncherModel launcherModel})async=> await setData(
     path: APIPath.launcherPath(),
-    data: launcherPower.toJson(),
+    data: launcherModel.toJson(),
   );
 
   Future<RadarModel?> getRadarData() async{
@@ -50,7 +51,7 @@ class FirebaseRealtimeDatabaseService {
       DataSnapshot dataSnapshot= await databaseReference.child(APIPath.launcherPath()).once();
       if(dataSnapshot.value !=null){
         LauncherModel result;
-        result=LauncherModel(launcherPower: dataSnapshot.value["launcherPower"],);
+        result=LauncherModel(launcherAngle: dataSnapshot.value["launcherAngle"],);
         return result;
       }
       return null;

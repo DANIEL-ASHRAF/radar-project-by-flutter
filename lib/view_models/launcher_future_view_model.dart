@@ -8,13 +8,13 @@ import 'package:stacked/stacked.dart';
 
 class LauncherFutureViewModel  extends FutureViewModel<LauncherModel>{
   final database = locator<FirebaseRealtimeDatabaseService>();
-  late bool _isEnable;
-  bool get isEnable =>_isEnable;
+  late int _launcherAngle;
+  int get launcherAngle =>_launcherAngle;
   LauncherModel? result;
   Future<LauncherModel?> getData()async{
     try{
       result= await database.getLauncherData();
-      setPower();
+      setLauncherAngle(result?.launcherAngle??0);
       return result;
     }on PlatformException catch(e){
       showErrorDialog(e.message);
@@ -23,18 +23,21 @@ class LauncherFutureViewModel  extends FutureViewModel<LauncherModel>{
     }
   }
 
-  void setPower(){
-    _isEnable=result?.launcherPower??false;
+  void setLauncherAngle(int value){
+    _launcherAngle=value;
   }
 
-  Future<void> changePower() async{
+  Future<void> sendData() async{
     try{
-      _isEnable=!_isEnable;
-      await database.setLauncherData(launcherPower: LauncherModel(launcherPower: isEnable));
+      setBusy(true);
+      await database.setLauncherData(launcherModel: LauncherModel(launcherAngle: _launcherAngle));
+      setBusy(false);
       notifyListeners();
     }on FirebaseException catch(e){
+      setBusy(false);
       showErrorDialog(e.message);
     }catch(e){
+      setBusy(false);
       showErrorDialog(null);
     }
   }

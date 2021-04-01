@@ -29,7 +29,7 @@ class SignInView extends StatelessWidget {
   }
 }
 
-class _Body extends HookViewModelWidget<SignInViewModel> with ValidatorsClass{
+class _Body extends HookViewModelWidget<SignInViewModel>{
   _Body({Key? key}) : super(key: key, reactive: false);
 
   final _myKey = GlobalKey<FormState>();
